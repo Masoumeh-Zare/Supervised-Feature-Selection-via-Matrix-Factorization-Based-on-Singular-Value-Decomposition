@@ -64,7 +64,7 @@ for i=1:5
       D_2=1./D_1;
       D=diag(D_2);
       W_old=W_new*D;
-      H=sigma*inv(X*W*sigma)X
+      H=sigma*inv(X*W*sigma)X;
         
     end
     
