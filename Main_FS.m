@@ -40,7 +40,7 @@ for i=1:5
     %%..............initial parameters............
     [n,d]=size(ds_Train);
     [~,sigma,V]=svd(ds_Train);
-    H=sigma*V;
+    H=sigma*V';
     teta=weights;
     W=rand(d,n);
     D_1=sqrt(diag(W'*W));
@@ -50,18 +50,21 @@ for i=1:5
     beta=10^6;
     max_iteration=100;
     iter=1;
+    Data=ds_Train'*ds_Train;
+    T=teta*teta';
     %%............................................
     while iter~=max_iteration
         iter=iter+1;
              
-      S=ds_Train'*ds_Train*H'+beta*W_old+teta*teta'*W_old;
-      M= ds_Train'*ds_Train*W_old*H*H'+beta*(W_old*W_old'*W_old);
+      S=Data*H'+beta*W_old-T*W_old;
+      M= Data*W_old*H*H'+beta*(W_old*W_old'*W_old);
       F=S./M;
       W_new=F.*W_old;
       D_1=sqrt(diag(W_new'*W_new));
       D_2=1./D_1;
       D=diag(D_2);
       W_old=W_new*D;
+      H=sigma*inv(X*W*sigma)X
         
     end
     
