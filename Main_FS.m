@@ -9,16 +9,11 @@ clc;
 %  dataset=bsxfun(@rdivide,input_1,sigma11);
 %%.............................................. 
 
-ds_1=dataset;
+ds=dataset;
 targets=Targets;
- %% ................reduction data ..................
+ %% 
   Gain_obj=fsInfoGain(ds_1,targets);
-  weights=Gain_obj.W;
-  [~,m]=sort(weights,'descend');
-  index=m(1:7000);
-  ds=ds_1(:,index);
-      
-       
+  weights=Gain_obj.W;   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%................... Cross Validation .................
  for r=1:20
